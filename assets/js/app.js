@@ -86,13 +86,19 @@ let gameController = (function () {
 
         _renderTurnMsg(_currentPlayer);
 
-        // Get data-index of clicked element, change element in array
-        gameBoard.boardArr[event.target.dataset.index] = _currentPlayer.marker;
+        if (event.target.innerText === "") {
 
-        // render changes via renderBoard(board)
-        gameBoard.renderBoard(_board);
+            // Get data-index of clicked element, change element in array
+            gameBoard.boardArr[event.target.dataset.index] = _currentPlayer.marker;
 
-        _changeTurn();
+            // Check spot as taken (check if cell already has value)
+
+            // render changes via renderBoard(board)
+            gameBoard.renderBoard(_board);
+
+            _changeTurn();
+
+        }
 
     }
 
