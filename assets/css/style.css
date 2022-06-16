@@ -2,6 +2,9 @@
     --c-alpha: #18181b;
     --c-beta: #ecfdf5;
     --c-border: #a7f3d0;
+    --c-p1: #2563EB;
+    --c-p2: #E11D48;
+    --c-turn: #34d399;
 }
 html {
     -webkit-box-sizing: border-box;
@@ -17,6 +20,7 @@ html {
 body {
     background-color: var(--c-alpha);
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -29,7 +33,67 @@ body {
 }
 .cell {
     background-color: var(--c-beta);
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
     border: 10px solid var(--c-border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10rem;
+    cursor: pointer;
+}
+.players {
+    display: flex;
+    gap: 2rem;
+    width: 30%;
+    margin-bottom: 1rem;
+}
+.player {
+    display: grid;
+    text-align: center;
+}
+.player-numb {
+    color: white;
+    font-weight: 700;
+    font-size: 1.5rem;
+    display: inline-block;
+    margin: 0;
+}
+.player-marker {
+    font-size: 5rem;
+}
+.player-right 
+.player-marker {
+    color: var(--c-p2);
+}
+.player-left 
+.player-marker {
+    color: var(--c-p1);
+}
+.player-left svg {
+    color: var(--c-p1);
+}
+.player-right {
+    margin-left: auto;
+}
+.player-right svg {
+    color: var(--c-p2);
+}
+.player-wrapper {
+    display: flex;
+    align-items: center;
+}
+#turn {
+    height: 2rem;
+    text-transform: capitalize;
+    background-color: var(--c-turn);
+    width: 25rem;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 2rem;
+    margin: 1.25rem;
+    font-size: 1.75rem;
+}
+#turn span {
+    color: var(--c-p2);
 }
