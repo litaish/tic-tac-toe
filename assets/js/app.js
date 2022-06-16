@@ -57,17 +57,24 @@ let gameController = (function () {
     // Events
     _board.addEventListener("click", _placeMarkers);
 
-    function initCurrentPlayer() {
+    function _initCurrentPlayer() {
 
         (_p1.firstTurn) === true ? _currentPlayer = _p1 : _currentPlayer = _p2;
-
+        _renderTurnMsg();
     }
 
-    initCurrentPlayer();
+    _initCurrentPlayer();
 
     function _renderTurnMsg() {
 
         _turnMsg.innerText = _currentPlayer.marker;
+
+    }
+
+    function _changeTurn() {
+
+        (_currentPlayer === _p1) ? _currentPlayer = _p2 : _currentPlayer = _p1;
+        _renderTurnMsg();
 
     }
 
@@ -84,6 +91,8 @@ let gameController = (function () {
 
         // render changes via renderBoard(board)
         gameBoard.renderBoard(_board);
+
+        _changeTurn();
 
     }
 
