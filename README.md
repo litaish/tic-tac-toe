@@ -11,3 +11,11 @@ contains marker placement functionality.
 - Game board - module pattern - a module for game board logic. 
 Defines an array of markers, renders the game board for the user
 to see.
+
+Players have 4 ways of winning the game:
+1. Along rows
+2. Along columns
+3. Diagonal
+4. Opposite diagonal
+
+So each of these conditions must be checked

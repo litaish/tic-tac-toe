@@ -51,6 +51,8 @@ let gameController = (function () {
 
     // DOM
     const _board = document.querySelector(".board");
+    const _victoryIconP1 = document.getElementById("vi_p1");
+    const _victoryIconP2 = document.getElementById("vi_p2");
 
     // Events
     _board.addEventListener("click", _placeMarkers);
