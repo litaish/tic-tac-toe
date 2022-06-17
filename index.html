@@ -12,25 +12,24 @@
 <body>
     <div class="players">
         <div class="player player-left">
-            <div class="player-marker">X</div>
             <div class="player-wrapper">
                 <svg style="width:64px;height:64px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
-                <p class="player-numb">Player 1</p>
+                <p class="player-numb">P1</p>
             </div>
         </div>
         <div class="player player-right">
-            <div class="player-marker">O</div>
             <div class="player-wrapper">
                 <svg style="width:64px;height:64px" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
                 </svg>
-                <p class="player-numb">Player 2</p>
+                <p class="player-numb">P2</p>
             </div>
         </div>
     </div>
-    <div id="turn">It is <span id="turn_marker"></span> turn!</div>
+    <hr>
+    <!-- <div id="turn">IT IS <span id="turn_marker"></span> TURN!</div> -->
     <div class="board">
         <div data-index="0" class="cell"></div>
         <div data-index="1" class="cell"></div>
@@ -42,5 +41,6 @@
         <div data-index="7" class="cell"></div>
         <div data-index="8" class="cell"></div>
     </div>
+    <button id="btn_reset" type="button">RESET</button>
 </body>
 </html>

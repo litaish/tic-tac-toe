@@ -22,7 +22,6 @@ let gameBoard = (function () {
         }
     }
 
-
     return {
         boardArr: boardArr,
         renderBoard: renderBoard,
@@ -51,7 +50,6 @@ let gameController = (function () {
     let _currentPlayer;
 
     // DOM
-    const _turnMsg = document.getElementById("turn_marker");
     const _board = document.querySelector(".board");
 
     // Events
@@ -60,21 +58,24 @@ let gameController = (function () {
     function _initCurrentPlayer() {
 
         (_p1.firstTurn) === true ? _currentPlayer = _p1 : _currentPlayer = _p2;
-        _renderTurnMsg();
+
     }
 
     _initCurrentPlayer();
 
-    function _renderTurnMsg() {
+    function _addMarkerShadow(target) {
 
-        _turnMsg.innerText = _currentPlayer.marker;
+        (_currentPlayer.marker === "X") ? target.classList.toggle("blue-shadow") : target.classList.toggle("red-shadow");
 
     }
 
     function _changeTurn() {
 
         (_currentPlayer === _p1) ? _currentPlayer = _p2 : _currentPlayer = _p1;
-        _renderTurnMsg();
+
+    }
+
+    function _searchForWin() {
 
     }
 
@@ -84,21 +85,18 @@ let gameController = (function () {
      *  */
     function _placeMarkers(event) {
 
-        _renderTurnMsg(_currentPlayer);
-
         if (event.target.innerText === "") {
 
             // Get data-index of clicked element, change element in array
             gameBoard.boardArr[event.target.dataset.index] = _currentPlayer.marker;
 
-            // Check spot as taken (check if cell already has value)
-
-            // render changes via renderBoard(board)
             gameBoard.renderBoard(_board);
+
+            _addMarkerShadow(event.target);
 
             _changeTurn();
 
-        }
+        } 
 
     }
 
