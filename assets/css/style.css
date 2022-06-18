@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 :root {
     --c-alpha: #18181b;
     --c-beta: #ecfdf5;
@@ -5,7 +6,6 @@
     --c-p1: #2563EB;
     --c-p2: #E11D48;
     --c-turn: #34d399;
-    --c-turn-text: #27272A;
     --c-reset-text: #ECFDF5;
     --c-trophy: #FBBF24;
 }
@@ -33,11 +33,13 @@ body {
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     gap: 10px;
+    font-family: 'Varela Round', sans-serif;
 }
 .cell {
     background-color: var(--c-beta);
     width: 180px;
     height: 180px;
+    color: var(--c-alpha);
     border: 10px solid var(--c-border);
     display: flex;
     justify-content: center;
@@ -129,7 +131,6 @@ body {
     height: 48px;
     width: 48px;
     color: var(--c-trophy);
-    animation: fadeInAnimation ease 2s;
 }
 #vi_p1 {
     visibility: hidden;

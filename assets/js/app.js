@@ -11,6 +11,18 @@ let gameBoard = (function () {
         " ", " ", " "
     ];
 
+    // All winning conditions according to cell index
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
     function renderBoard(board) {
 
         const boardChildren = board.children;
@@ -22,9 +34,21 @@ let gameBoard = (function () {
         }
     }
 
+    function resetBoard(board) {
+
+        boardArr = [
+            " ", " ", " ",
+            " ", " ", " ",
+            " ", " ", " "
+        ];
+
+    }
+
     return {
         boardArr: boardArr,
         renderBoard: renderBoard,
+        winningConditions: winningConditions,
+        resetBoard: resetBoard,
     }
 })();
 
@@ -77,7 +101,42 @@ let gameController = (function () {
 
     }
 
-    function _searchForWin() {
+    /**
+     * Checking each condition to board array indexes
+     */
+    function _checkForWin() {
+
+            // Return winning condition
+            const winningCondition = gameBoard.winningConditions.find(condition => {
+
+            let a = gameBoard.boardArr[condition[0]];
+            let b = gameBoard.boardArr[condition[1]];
+            let c = gameBoard.boardArr[condition[2]];
+            
+            return ((a !== " " && b !== " " && c !== " ") && (a === b && a === c))
+
+        })
+
+        // Return winning symbol
+        if (winningCondition !== undefined) _handleWin(gameBoard.boardArr[winningCondition[0]]);
+
+    }
+
+    /**
+     * Sets winner player, stops the game
+     */
+    function _handleWin(winningSymbol) {
+
+        // Set winner player and winning message
+        if (_p1.marker === winningSymbol) {
+
+            _victoryIconP1.style.visibility = "visible";
+
+        } else {
+
+            _victoryIconP2.style.visibility = "visible";
+
+        }
 
     }
 
@@ -95,6 +154,8 @@ let gameController = (function () {
             gameBoard.renderBoard(_board);
 
             _addMarkerShadow(event.target);
+
+            _checkForWin();
 
             _changeTurn();
 
