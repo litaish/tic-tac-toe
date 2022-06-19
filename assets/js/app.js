@@ -5,7 +5,7 @@
 let gameBoard = (function () {
     "use strict";
 
-    const boardArr = [
+    let boardArr = [
         " ", " ", " ",
         " ", " ", " ",
         " ", " ", " "
@@ -32,15 +32,18 @@ let gameBoard = (function () {
             boardChildren[i].innerText = boardArr[i];
 
         }
+
     }
 
-    function resetBoard(board) {
+    function resetBoard() {
 
         boardArr = [
             " ", " ", " ",
             " ", " ", " ",
             " ", " ", " "
-        ];
+        ]
+
+        console.log('this is from module ', boardArr)
 
     }
 
@@ -77,9 +80,11 @@ let gameController = (function () {
     const _board = document.querySelector(".board");
     const _victoryIconP1 = document.getElementById("vi_p1");
     const _victoryIconP2 = document.getElementById("vi_p2");
+    const _resetBtn = document.getElementById("btn_reset");
 
     // Events
     _board.addEventListener("click", _placeMarkers);
+    _resetBtn.addEventListener("click", _resetGame);
 
     function _initCurrentPlayer() {
 
@@ -89,11 +94,11 @@ let gameController = (function () {
 
     _initCurrentPlayer();
 
-    function _addMarkerShadow(target) {
+    // function _addMarkerShadow(target) {
 
-        (_currentPlayer.marker === "X") ? target.classList.toggle("blue-shadow") : target.classList.toggle("red-shadow");
+    //     (_currentPlayer.marker === "X") ? target.classList.toggle("blue-shadow") : target.classList.toggle("red-shadow");
 
-    }
+    // }
 
     function _changeTurn() {
 
@@ -116,6 +121,8 @@ let gameController = (function () {
             return ((a !== " " && b !== " " && c !== " ") && (a === b && a === c))
 
         })
+
+        
 
         // Return winning symbol
         if (winningCondition !== undefined) _handleWin(gameBoard.boardArr[winningCondition[0]]);
@@ -153,13 +160,34 @@ let gameController = (function () {
 
             gameBoard.renderBoard(_board);
 
-            _addMarkerShadow(event.target);
+            console.log(gameBoard.boardArr)
+
+            // _addMarkerShadow(event.target);
 
             _checkForWin();
 
             _changeTurn();
 
         } 
+
+    }
+
+    /**
+     * Resets board and initializes current player again.
+     * Removes victory symbol above player
+     */
+    function _resetGame() {
+
+        gameBoard.resetBoard();
+
+        console.log(gameBoard.boardArr)
+
+        gameBoard.renderBoard(_board);
+
+        _initCurrentPlayer();
+
+        _victoryIconP1.style.visibility = "hidden";
+        _victoryIconP2.style.visibility = "hidden";
 
     }
 
