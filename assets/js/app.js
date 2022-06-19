@@ -35,6 +35,13 @@ let gameBoard = (function () {
 
     }
 
+    // To work with the boardArr directly in gameBoard, it must be returned in a function
+    function getBoard() {
+
+        return boardArr;
+
+    }
+
     function resetBoard() {
 
         boardArr = [
@@ -43,12 +50,10 @@ let gameBoard = (function () {
             " ", " ", " "
         ]
 
-        console.log('this is from module ', boardArr)
-
     }
 
     return {
-        boardArr: boardArr,
+        getBoard: getBoard,
         renderBoard: renderBoard,
         winningConditions: winningConditions,
         resetBoard: resetBoard,
@@ -114,9 +119,9 @@ let gameController = (function () {
             // Return winning condition
             const winningCondition = gameBoard.winningConditions.find(condition => {
 
-            let a = gameBoard.boardArr[condition[0]];
-            let b = gameBoard.boardArr[condition[1]];
-            let c = gameBoard.boardArr[condition[2]];
+            let a = gameBoard.getBoard()[condition[0]];
+            let b = gameBoard.getBoard()[condition[1]];
+            let c = gameBoard.getBoard()[condition[2]];
             
             return ((a !== " " && b !== " " && c !== " ") && (a === b && a === c))
 
@@ -125,7 +130,7 @@ let gameController = (function () {
         
 
         // Return winning symbol
-        if (winningCondition !== undefined) _handleWin(gameBoard.boardArr[winningCondition[0]]);
+        if (winningCondition !== undefined) _handleWin(gameBoard.getBoard()[winningCondition[0]]);
 
     }
 
@@ -155,12 +160,14 @@ let gameController = (function () {
 
         if (event.target.innerText === "") {
 
-            // Get data-index of clicked element, change element in array
-            gameBoard.boardArr[event.target.dataset.index] = _currentPlayer.marker;
+            /**
+             * Get index of clicked cell, set the value of that index in the array
+             * to the current market. Use getBoard() to directly work with boardArr in 
+             * gameBoard module.
+             */
+            gameBoard.getBoard()[event.target.dataset.index] = _currentPlayer.marker;
 
             gameBoard.renderBoard(_board);
-
-            console.log(gameBoard.boardArr)
 
             // _addMarkerShadow(event.target);
 
@@ -179,8 +186,6 @@ let gameController = (function () {
     function _resetGame() {
 
         gameBoard.resetBoard();
-
-        console.log(gameBoard.boardArr)
 
         gameBoard.renderBoard(_board);
 

@@ -17,5 +17,3 @@ Players have 4 ways of winning the game:
 2. Along columns
 3. Diagonal
 4. Opposite diagonal
-
-So each of these conditions must be checked
